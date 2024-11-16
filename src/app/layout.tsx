@@ -2,6 +2,7 @@ import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { RootProvider } from './provider'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -22,7 +23,9 @@ interface RootLayoutProps {
 function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='en'>
-      <body className={cn('flex min-h-dvh flex-col antialiased', inter.variable)}>{children}</body>
+      <body className={cn('flex min-h-dvh flex-col antialiased', inter.variable)}>
+        <RootProvider>{children}</RootProvider>
+      </body>
     </html>
   )
 }
