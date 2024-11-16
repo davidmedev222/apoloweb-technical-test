@@ -1,0 +1,5 @@
+## 📝 Descripción
+
+## 🖼️ Imágenes
+
+## 💡 Consideraciones adicionales
