@@ -58,6 +58,13 @@ export default {
       },
       screens: {
         xsm: '440px'
+      },
+      backgroundImage: {
+        mosaics:
+          'linear-gradient(to right,#f0f0f0 1px,transparent 1px),linear-gradient(to bottom,#f0f0f0 1px,transparent 1px)'
+      },
+      backgroundSize: {
+        block: '6rem 4rem'
       }
     }
   },
