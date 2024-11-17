@@ -1,16 +1,16 @@
 export interface Character {
-  created: Date
-  episode: string[]
+  created?: Date
+  episode?: string[]
   gender: CharacterGender
-  id: number
+  id: string
   image: string
   location: CharacterLocation
   name: string
   origin: CharacterLocation
   species: CharacterSpecies
   status: CharacterStatus
-  type: string
-  url: string
+  type?: string
+  url?: string
 }
 
 export enum CharacterGender {
@@ -21,7 +21,7 @@ export enum CharacterGender {
 
 export interface CharacterLocation {
   name: string
-  url: string
+  url?: string
 }
 
 export enum CharacterSpecies {
