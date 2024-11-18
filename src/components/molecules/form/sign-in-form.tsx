@@ -2,13 +2,18 @@
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { signInSchema, SignInSchema } from '@/utils'
+import { useUser } from '@/hooks'
+import { signInWithEmailAndPassword } from '@/services/auth.service'
+import { Routes, setLocalStorage, signInSchema, SignInSchema } from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2Icon } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
 function SignInForm() {
+  const { revalidateUser } = useUser()
+  const router = useRouter()
   const form = useForm<SignInSchema>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
@@ -20,10 +25,17 @@ function SignInForm() {
 
   const onSubmit = async (values: SignInSchema) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      console.log(values)
+      await new Promise((resolve) => setTimeout(resolve, 500))
+
+      const { error, data: user } = signInWithEmailAndPassword(values)
+      if (error || !user) return toast.error(error)
+
+      setLocalStorage('user', user)
       toast.success('¡Bienvenido de vuelta a Apolo Web!')
       form.reset()
+
+      revalidateUser()
+      router.replace(Routes.Home)
     } catch (error) {
       toast.error('¡Ocurrió un error al iniciar sesión, inténtalo de nuevo!')
     }

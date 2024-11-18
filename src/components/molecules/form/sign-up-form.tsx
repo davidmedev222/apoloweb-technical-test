@@ -2,13 +2,17 @@
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { SignUpSchema, signUpSchema } from '@/utils'
+import { User } from '@/models'
+import { signUpWithEmailAndPassword } from '@/services/auth.service'
+import { getLocalStorage, Routes, setLocalStorage, SignUpSchema, signUpSchema } from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2Icon } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
 function SignUpForm() {
+  const router = useRouter()
   const form = useForm<SignUpSchema>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -21,10 +25,18 @@ function SignUpForm() {
 
   const onSubmit = async (values: SignUpSchema) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      console.log(values)
-      toast.success('¡Bienvenido a Apolo Web!')
+      await new Promise((resolve) => setTimeout(resolve, 500))
+
+      const { error, data: user } = signUpWithEmailAndPassword(values)
+      if (error || !user) return toast.error(error)
+
+      const users = getLocalStorage<User[]>('users', [])
+      setLocalStorage('users', [...users, user])
+
+      toast.success('¡Cuenta creada correctamente!')
       form.reset()
+
+      router.replace(Routes.Login)
     } catch (error) {
       toast.error('¡Ocurrió un error al registrarse, inténtalo de nuevo!')
     }
