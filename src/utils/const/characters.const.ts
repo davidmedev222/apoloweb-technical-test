@@ -48,4 +48,8 @@ export const KEY_QUERY_CHARACTER_NAME = 'name'
 export const KEY_QUERY_CHARACTER_STATUS = 'status'
 export const KEY_QUERY_CHARACTER_GENDER = 'gender'
 export const KEY_QUERY_CHARACTER_SPECIES = 'species'
-export const KEY_QUERY_CHARACTER_PAGE = 'page'
+
+/**
+ * Minimum page size for the API.
+ */
+export const MIN_PAGE_SIZE = 1

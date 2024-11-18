@@ -16,13 +16,11 @@ interface CharacterListProps {
 function CharacterList({ className, characters }: CharacterListProps) {
   return (
     <ul className={cn('grid gap-4 xsm:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4', className)}>
-      {characters
-        .sort((a, b) => a.name.localeCompare(b.name))
-        .map((character) => (
-          <li key={character.id}>
-            <CharacterCard character={character} />
-          </li>
-        ))}
+      {characters.map((character) => (
+        <li key={character.id}>
+          <CharacterCard character={character} />
+        </li>
+      ))}
     </ul>
   )
 }
