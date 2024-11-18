@@ -5,6 +5,9 @@ import { CHARACTERS_GENDERS_DICTIONARY, CHARACTERS_SPECIES_DICTIONARY, CHARACTER
 import Image from 'next/image'
 
 interface CharacterCardProps {
+  /**
+   * The character to display.
+   */
   character: Character
 }
 

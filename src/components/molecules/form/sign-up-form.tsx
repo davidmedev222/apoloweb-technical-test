@@ -23,6 +23,11 @@ function SignUpForm() {
   })
   const { isSubmitting, isDirty } = form.formState
 
+  /**
+   * Handles form submission.
+   * @param values - The form values.
+   * @returns This function does not return a value.
+   */
   const onSubmit = async (values: SignUpSchema) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 500))

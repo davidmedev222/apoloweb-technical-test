@@ -11,12 +11,19 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 interface MyCharacterCardProps {
+  /**
+   * The character to display.
+   */
   character: Character
 }
 
 function MyCharacterCard({ character }: MyCharacterCardProps) {
   const { removeCharacter } = useMyCharacters()
   const [isOpenDropdown, setIsOpenDropdown] = useState(false)
+
+  /**
+   * Handles the closing of the dropdown menu.
+   */
   const handleCloseDropdown = () => setIsOpenDropdown(false)
 
   return (

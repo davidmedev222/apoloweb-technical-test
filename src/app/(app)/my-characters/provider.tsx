@@ -2,6 +2,9 @@
 import { MyCharactersProvider } from '@/context'
 
 interface MyCharactersProviderProps {
+  /**
+   * The children components.
+   */
   children: React.ReactNode
 }
 

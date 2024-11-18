@@ -6,6 +6,9 @@ import { Loader2Icon } from 'lucide-react'
 import { redirect } from 'next/navigation'
 
 interface LandingLayoutProps {
+  /**
+   * The children components.
+   */
   children: React.ReactNode
 }
 
