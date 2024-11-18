@@ -17,7 +17,6 @@ import {
   CHARACTERS_STATUS_LIST,
   KEY_QUERY_CHARACTER_GENDER,
   KEY_QUERY_CHARACTER_NAME,
-  KEY_QUERY_CHARACTER_PAGE,
   KEY_QUERY_CHARACTER_SPECIES,
   KEY_QUERY_CHARACTER_STATUS
 } from '@/utils'
@@ -27,7 +26,7 @@ import { useState } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 
 function CharacterFilters() {
-  const { removeAndToggleQueryString, removeQueryString, getQueryValue, hasQueryString } = useQueryString()
+  const { toggleQueryValue, removeQueryString, getQueryValue, hasQueryString } = useQueryString()
   const router = useRouter()
   const pathname = usePathname()
 
@@ -35,9 +34,8 @@ function CharacterFilters() {
   const characterStatus = getQueryValue(KEY_QUERY_CHARACTER_STATUS)
   const characterSpecies = getQueryValue(KEY_QUERY_CHARACTER_SPECIES)
   const characterGender = getQueryValue(KEY_QUERY_CHARACTER_GENDER)
-  const characterPage = getQueryValue(KEY_QUERY_CHARACTER_PAGE)
 
-  const hasFilters = characterName || characterStatus || characterSpecies || characterGender || characterPage
+  const hasFilters = characterName || characterStatus || characterSpecies || characterGender
 
   const [searchCharacterName, setSearchCharacterName] = useState(characterName || '')
 
@@ -64,7 +62,7 @@ function CharacterFilters() {
    * @param value - The new value of the filter.
    */
   const handleToggleFilter = (key: string, value: string) => {
-    router.push(`${pathname}?${removeAndToggleQueryString(KEY_QUERY_CHARACTER_PAGE, key, value)}`, { scroll: false })
+    router.push(`${pathname}?${toggleQueryValue(key, value)}`, { scroll: false })
   }
 
   /**
