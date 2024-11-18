@@ -1,6 +1,9 @@
 import { CharacterGender, CharacterSpecies, CharacterStatus } from '@/models'
 import { z } from 'zod'
 
+/**
+ * Zod schema for character.
+ */
 export const characterSchema = z.object({
   name: z.string().min(1, 'El nombre es obligatorio').min(2, {
     message: 'El nombre debe tener al menos 2 caracteres'

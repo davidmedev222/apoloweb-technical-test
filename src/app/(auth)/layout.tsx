@@ -1,6 +1,9 @@
 import Image from 'next/image'
 
 interface AuthLayoutProps {
+  /**
+   * The children components.
+   */
   children: React.ReactNode
 }
 

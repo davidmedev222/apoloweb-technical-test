@@ -34,8 +34,17 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
 interface CharacterModalProps {
+  /**
+   * The children components.
+   */
   children: React.ReactNode
+  /**
+   * The character to edit.
+   */
   character?: Character
+  /**
+   * Callback function to be called when the modal is closed.
+   */
   onSuccess?: () => void
 }
 
@@ -60,6 +69,11 @@ function CharacterModal({ children, character, onSuccess }: CharacterModalProps)
   })
   const { isSubmitting, isDirty } = form.formState
 
+  /**
+   * Handles form submission.
+   * @param values - The form values.
+   * @returns This function does not return a value.
+   */
   const onSubmit = async (values: CharacterSchema) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 500))

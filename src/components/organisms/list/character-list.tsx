@@ -3,7 +3,13 @@ import { cn } from '@/lib/utils'
 import { Character } from '@/models'
 
 interface CharacterListProps {
+  /**
+   * The class name for the list.
+   */
   className?: string
+  /**
+   * The list of characters to display.
+   */
   characters: Character[]
 }
 

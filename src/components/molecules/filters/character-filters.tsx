@@ -40,19 +40,37 @@ function CharacterFilters() {
   const hasFilters = characterName || characterStatus || characterSpecies || characterGender || characterPage
 
   const [searchCharacterName, setSearchCharacterName] = useState(characterName || '')
+
+  /**
+   * Debounced function for handling character name changes.
+   * @param value - The new value of the character name.
+   */
   const debouncedCharacterName = useDebouncedCallback((value) => {
     if (!value) return handleRemoveFilter(KEY_QUERY_CHARACTER_NAME)
     handleToggleFilter(KEY_QUERY_CHARACTER_NAME, value)
   }, 1000)
 
+  /**
+   * Handles removing a filter from the query string.
+   * @param key - The key of the filter to remove.
+   */
   const handleRemoveFilter = (key: string) => {
     router.push(`${pathname}?${removeQueryString(key)}`, { scroll: false })
   }
 
+  /**
+   * Handles toggling a filter in the query string.
+   * @param key - The key of the filter to toggle.
+   * @param value - The new value of the filter.
+   */
   const handleToggleFilter = (key: string, value: string) => {
     router.push(`${pathname}?${removeAndToggleQueryString(KEY_QUERY_CHARACTER_PAGE, key, value)}`, { scroll: false })
   }
 
+  /**
+   * Handles resetting all filters.
+   * @returns This function does not return a value.
+   */
   const handleResetFilters = () => {
     setSearchCharacterName('')
     router.push(`${pathname}`, { scroll: false })

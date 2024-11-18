@@ -5,6 +5,9 @@ import { SWR_CONFIG } from '@/services'
 import { SWRConfig } from 'swr'
 
 interface RootProviderProps {
+  /**
+   * The children components.
+   */
   children: React.ReactNode
 }
 

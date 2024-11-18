@@ -17,6 +17,7 @@ import useSWR from 'swr'
 
 function CharactersSection() {
   const searchParams = useSearchParams()
+
   const name = searchParams.get(KEY_QUERY_CHARACTER_NAME) ?? ''
   const status = searchParams.get(KEY_QUERY_CHARACTER_STATUS) ?? ''
   const species = searchParams.get(KEY_QUERY_CHARACTER_SPECIES) ?? ''
